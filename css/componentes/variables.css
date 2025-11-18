@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "novecento";
+  src: url("../assets/fonts/Novecentosanswide-Normal.otf");
+}
+@font-face {
+  font-family: "novecentoBold";
+  src: url("../assets/fonts/Novecentosanswide-Bold.otf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/*# sourceMappingURL=variables.css.map */
