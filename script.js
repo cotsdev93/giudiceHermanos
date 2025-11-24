@@ -22,3 +22,34 @@ function intro() {
 }
 
 intro();
+
+///////////////////////////////////// nav
+
+const logo = document.querySelector(".logo");
+const li1 = document.querySelector(".li1");
+const li2 = document.querySelector(".li2");
+const li3 = document.querySelector(".li3");
+const li4 = document.querySelector(".li4");
+
+function nav() {
+  setTimeout(() => {
+    logo.style.transform = "translateX(0%)";
+  }, 3400);
+
+  setTimeout(() => {
+    li1.classList.add("nav-in");
+  }, 4000);
+  setTimeout(() => {
+    li2.classList.add("nav-in");
+  }, 4200);
+  setTimeout(() => {
+    li3.classList.add("nav-in");
+  }, 4400);
+  setTimeout(() => {
+    li4.classList.add("nav-in");
+  }, 4600);
+}
+
+nav();
+
+////////////////////////////////////

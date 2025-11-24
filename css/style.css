@@ -11,6 +11,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -19,7 +20,8 @@ body {
   position: relative;
 }
 body #intro {
-  background-color: #0B5E4E;
+  z-index: 2;
+  background-color: #0b5e4e;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -31,7 +33,7 @@ body #intro {
 body #intro .logoContainer .titulo1 {
   font-family: "novecento";
   text-transform: uppercase;
-  color: #D3CBBC;
+  color: #d3cbbc;
   margin: 0;
   padding: 0;
   padding-left: 3px;
@@ -43,7 +45,7 @@ body #intro .logoContainer .titulo2 {
   margin: 0;
   padding: 0;
   line-height: 0.8;
-  color: #E8DCC3;
+  color: #e8dcc3;
   font-family: "novecento";
   text-transform: uppercase;
   font-size: 50px;
@@ -55,7 +57,7 @@ body #intro .logoContainer .titulo3 {
   padding: 0;
   font-family: "novecento";
   text-transform: uppercase;
-  color: #D3CBBC;
+  color: #d3cbbc;
   text-align: right;
   padding-right: 2px;
   opacity: 0;
@@ -64,8 +66,211 @@ body #intro .logoContainer .titulo3 {
 
 body #main {
   width: 100%;
-  height: 100%;
-  border: solid 5px red;
+  height: 100vh;
+  background-image: url("../assets/img/foto03.jpg");
+  background-size: cover;
+}
+body #main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+@media (max-width: 737px) {
+  body #main {
+    background-position: center;
+  }
+}
+nav {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .logo {
+  font-size: 25px;
+  font-family: "novecento";
+  color: #e8dcc3;
+  font-weight: 600;
+  text-shadow: -1px 1px 1px rgb(0, 0, 0);
+  margin-left: 20px;
+  transform: translateX(-120%);
+  transition: 2s;
+  cursor: pointer;
+}
+nav .nav2 {
+  margin-right: 60px;
+  margin-top: 10px;
+}
+nav .nav2 ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 15px;
+}
+nav .nav2 ul li {
+  text-transform: uppercase;
+  font-family: "novecento";
+  font-size: 17px;
+  font-weight: 580;
+  letter-spacing: 0.5px;
+  text-shadow: -0.5px 0.5px 1px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.7s ease, text-shadow 1s;
+  transform: translateY(-50px) scale(1);
+}
+nav .nav2 ul li a {
+  text-decoration: none;
+  color: #e8dcc3;
+}
+nav .nav2 ul li.nav-in {
+  opacity: 0.8;
+  transform: translateY(0) scale(1);
+}
+nav .nav2 ul li:hover {
+  opacity: 1;
+  text-shadow: -0.5px 0.5px 2px rgb(0, 0, 0);
+  transform: translateY(0) scale(1.03);
+}
+
+@media (max-width: 737px) {
+  nav {
+    background-color: red;
+  }
+}
+body #nosotros {
+  width: 100%;
+  height: 100vh;
+}
+
+body #proyectos {
+  width: 100%;
+  height: 100vh;
+  border: solid 5px brown;
+}
+
+body #certificaciones {
+  width: 100%;
+  height: 100vh;
+  border: solid 4px red;
+}
+
+body #contacto {
+  width: 100%;
+  height: 100vh;
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  background-color: #0b5e4e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+footer .footerArriba {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+}
+footer .footerArriba .footer01 {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer .footerArriba .footer01 .logo {
+  font-size: 20px;
+  font-family: "novecento";
+  color: #e8dcc3;
+  font-weight: 600;
+  text-shadow: -1px 1px 1px rgb(0, 0, 0);
+}
+footer .footerArriba .footer02 {
+  height: auto;
+  margin: 10px 0px;
+}
+footer .footerArriba .footer02 .redesContainer {
+  gap: 15px;
+  display: flex;
+}
+footer .footerArriba .footer02 .redesContainer a {
+  text-decoration: none;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-whatsapp {
+  font-size: 20px;
+  color: #d3cbbc;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.5s;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-whatsapp:hover {
+  opacity: 1;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-instagram {
+  font-size: 20px;
+  color: #d3cbbc;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.5s;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-instagram:hover {
+  opacity: 1;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-envelope {
+  font-size: 20px;
+  color: #d3cbbc;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.5s;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-envelope:hover {
+  opacity: 1;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-location-dot {
+  font-size: 18px;
+  color: #d3cbbc;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.5s;
+}
+footer .footerArriba .footer02 .redesContainer a .fa-location-dot:hover {
+  opacity: 1;
+}
+footer .footerArriba .footer02 .footerUl {
+  list-style: none;
+}
+footer .footerArriba .footer02 .footerUl .footerLi {
+  line-height: 12px;
+}
+footer .footerArriba .footer02 .footerUl .footerLi .footerA {
+  text-decoration: none;
+  color: #d3cbbc;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+  font-size: 12px;
+}
+footer .footerArriba .footer02 .footerUl .footerLi .footerA:hover {
+  opacity: 1;
+}
+footer .footerAbajo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  color: #d3cbbc;
+  opacity: 0.8;
+  font-size: 10px;
+  padding: 5px;
+  gap: 10px;
+}
+footer .footerAbajo a {
+  color: #d3cbbc;
 }
 
 /*# sourceMappingURL=style.css.map */
