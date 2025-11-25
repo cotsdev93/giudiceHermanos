@@ -64,18 +64,57 @@ body #intro .logoContainer .titulo3 {
   transition: opacity 0.5s ease;
 }
 
-body #main {
+#main {
   width: 100%;
   height: 100vh;
   background-image: url("../assets/img/foto03.jpg");
   background-size: cover;
+  position: relative;
 }
-body #main::after {
+#main::after {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(255, 255, 255, 0.3);
   pointer-events: none;
+}
+#main .sloganHover {
+  position: absolute;
+  top: 50%;
+  height: 50%;
+  width: 100%;
+  transition: all 1s;
+}
+#main .sloganContainer {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+  width: auto;
+  pointer-events: none;
+}
+#main .sloganContainer .sloganContainer01 {
+  overflow: hidden;
+}
+#main .sloganContainer .sloganContainer01 .slogan01 {
+  transform: translateY(100%);
+  font-family: "Staatliches", sans-serif;
+  font-size: 100px;
+  line-height: 80px;
+  transition: transform 1s, text-shadow 0.3s;
+  color: #e8dcc3;
+}
+#main .sloganContainer .sloganContainer02 {
+  overflow: hidden;
+}
+#main .sloganContainer .sloganContainer02 .slogan02 {
+  transform: translateY(100%);
+  font-family: "Staatliches", sans-serif;
+  font-size: 100px;
+  line-height: 80px;
+  overflow: hidden;
+  text-align: right;
+  color: #e8dcc3;
+  transition: transform 1s, text-shadow 0.3s;
 }
 
 @media (max-width: 737px) {
@@ -83,14 +122,19 @@ body #main::after {
     background-position: center;
   }
 }
-nav {
+body {
+  position: relative;
+}
+body nav {
   width: 100%;
   height: 15vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  z-index: 10;
 }
-nav .logo {
+body nav .logo {
   font-size: 25px;
   font-family: "novecento";
   color: #e8dcc3;
@@ -101,17 +145,17 @@ nav .logo {
   transition: 2s;
   cursor: pointer;
 }
-nav .nav2 {
+body nav .nav2 {
   margin-right: 60px;
   margin-top: 10px;
 }
-nav .nav2 ul {
+body nav .nav2 ul {
   display: flex;
   list-style: none;
   align-items: center;
   gap: 15px;
 }
-nav .nav2 ul li {
+body nav .nav2 ul li {
   text-transform: uppercase;
   font-family: "novecento";
   font-size: 17px;
@@ -123,15 +167,15 @@ nav .nav2 ul li {
   transition: opacity 0.5s ease, transform 0.7s ease, text-shadow 1s;
   transform: translateY(-50px) scale(1);
 }
-nav .nav2 ul li a {
+body nav .nav2 ul li a {
   text-decoration: none;
   color: #e8dcc3;
 }
-nav .nav2 ul li.nav-in {
+body nav .nav2 ul li.nav-in {
   opacity: 0.8;
   transform: translateY(0) scale(1);
 }
-nav .nav2 ul li:hover {
+body nav .nav2 ul li:hover {
   opacity: 1;
   text-shadow: -0.5px 0.5px 2px rgb(0, 0, 0);
   transform: translateY(0) scale(1.03);

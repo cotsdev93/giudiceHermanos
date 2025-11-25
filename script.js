@@ -52,4 +52,46 @@ function nav() {
 
 nav();
 
-////////////////////////////////////
+//////////////////////////////////// main
+
+const sloganTarget = document.querySelectorAll(
+  ".sloganHover, .sloganContainer"
+);
+
+const slogan01 = document.querySelector(".slogan01");
+const slogan02 = document.querySelector(".slogan02");
+
+sloganTarget.forEach((sloganTarget) => {
+  sloganTarget.addEventListener("mouseenter", () => {
+    slogan01.style.transform = "translateY(0%)";
+    setTimeout(() => {
+      slogan01.style.textShadow = "-2px 2px 2px rgb(0, 0, 0, 2)";
+    }, 1001);
+    setTimeout(() => {
+      slogan02.style.transform = "translateY(0%)";
+      setTimeout(() => {
+        slogan02.style.textShadow = "-2px 2px 2px rgb(0, 0, 0, 2)";
+      }, 1001);
+    }, 500);
+  });
+});
+
+sloganTarget.forEach((sloganTarget) => {
+  sloganTarget.addEventListener("mouseleave", () => {
+    slogan01.style.textShadow = "none";
+
+    setTimeout(() => {
+      slogan01.style.transform = "translateY(100%)";
+    }, 300);
+
+    setTimeout(() => {
+      slogan02.style.textShadow = "none";
+
+      setTimeout(() => {
+        slogan02.style.transform = "translateY(100%)";
+      }, 500);
+
+    }, 300);
+  });
+});
+

@@ -1,21 +1,17 @@
-body #main {
-  width: 100%;
-  height: 100vh;
-  background-image: url("../assets/img/foto03.jpg");
-  background-size: cover;
-}
-body #main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.3);
-  pointer-events: none;
-}
+/* Error: Undefined variable.
+ *    ,
+ * 39 |         color: $logo;
+ *    |                ^^^^^
+ *    '
+ *   scss\componentes\main.scss 39:16  root stylesheet */
 
-@media (max-width: 737px) {
-  body #main {
-    background-position: center;
-  }
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 39 \2502          color: $logo;\d\a    \2502                 ^^^^^\a    \2575 \a   scss\\componentes\\main.scss 39:16  root stylesheet";
 }
-
-/*# sourceMappingURL=main.css.map */
