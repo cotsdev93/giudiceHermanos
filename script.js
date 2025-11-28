@@ -1,5 +1,3 @@
-console.log("funca");
-
 function intro() {
   const mainIntro = document.getElementById("intro");
   const titulo1 = document.querySelector(".titulo1");
@@ -92,6 +90,54 @@ sloganTarget.forEach((sloganTarget) => {
       }, 500);
 
     }, 300);
+  });
+});
+
+/////////////////////////////////////////// contact
+
+const botonForm = document.querySelector(".botonForm")
+const contacto02 = document.querySelector(".contacto02")
+const contactoTitulo2 = document.querySelector(".contactoTitulo2")
+const contacto02Container = document.querySelector(".contacto02Container")
+
+botonForm.addEventListener("click", ()=>{
+  contacto02.style.transform = "translateX(0%)"
+  contactoTitulo2.style.color = "rgb(230, 194, 73)"
+  contacto02Container.classList.add("after")
+  setTimeout(() => {
+    contacto02.style.boxShadow = "0px 0px 6px 1px #00000070"
+  }, 1001);
+})
+
+const customSelects = document.querySelectorAll(".selectApple");
+
+customSelects.forEach((select) => {
+  const trigger = select.querySelector(".selectApple__trigger");
+  const list = select.querySelector(".selectApple__list");
+  const labelSpan = select.querySelector(".selectApple__label");
+  const hiddenInput = select.querySelector('input[type="hidden"]');
+
+  trigger.addEventListener("click", () => {
+    select.classList.toggle("open");
+  });
+
+  list.querySelectorAll("li").forEach((option) => {
+    option.addEventListener("click", () => {
+      const value = option.dataset.value;
+      const text = option.textContent;
+
+      hiddenInput.value = value;
+      labelSpan.textContent = text;
+      select.classList.remove("open");
+    });
+  });
+});
+
+document.addEventListener("click", (e) => {
+  customSelects.forEach((select) => {
+    if (!select.contains(e.target)) {
+      select.classList.remove("open");
+    }
   });
 });
 

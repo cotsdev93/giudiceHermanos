@@ -1,6 +1,265 @@
 body {
-    #contacto {
-        width: 100%;
-        height: 100vh;
+  #contacto {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    .contacto01Container {
+      width: 45%;
+      height: 100%;
+      background: radial-gradient(circle at center, #1e8c75 0%, #0b5e4e 100%);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      overflow: hidden;
+
+      /* Capa con la grúa en blanco/beige con opacidad */
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(232, 220, 195, 0.2);
+        mask: url("../assets/img/grua.png") center/contain no-repeat;
+        -webkit-mask: url("../assets/img/grua.png") center/contain no-repeat;
+        pointer-events: none;
+      }
+
+      .contacto01 {
+        position: relative;
+        z-index: 1;
+        width: 80%;
+        height: 60%;
+        border-radius: 10px;
+
+        .contactoTitulo1 {
+          color: $logo;
+          font-size: 25px;
+          text-transform: uppercase;
+        }
+
+        .contactoTitulo2 {
+          color: transparent; // sin relleno
+          font-size: 25px;
+          text-transform: uppercase;
+          transition: all 0.5s;
+          // -webkit-text-stroke: 1px $main; // borde visible
+        }
+
+        .contactoTextoContainer {
+          .contactoTexto {
+            font-size: 16px;
+            color: $texto;
+          }
+        }
+
+        .contactoBotonContainer {
+          margin-top: 20px;
+          display: flex;
+          justify-content: flex-end;
+
+          .botonForm {
+            color: $main;
+            background-color: $logo;
+            border: none;
+            outline: none;
+            width: 100px;
+            height: 20px;
+            border-radius: 5px;
+          }
+        }
+      }
+
+      /* HOVER: aparece el relleno */
+      &:hover .contactoTitulo2 {
+        color: $logo;
+      }
     }
+
+    .contacto02Container {
+      width: 55%;
+      height: 100%;
+      background-image: url(".././assets/img/shakingHands.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.569); // transparente
+        opacity: 0; // oculto
+        transition: 1.5s ease-out; // 🔥 transición acá
+        pointer-events: none;
+      }
+
+      &.after::after {
+        background: rgba(255, 255, 255, 0.3); // visible
+        opacity: 0.5; // fade-in
+      }
+
+      .contacto02 {
+        transition: 1s ease-in-out, box-shadow 0.5s;
+        border: solid 1px rgb(201, 201, 201, 0.5);
+        backdrop-filter: blur(
+          8px
+        ); // 🔥 blur del fondo SIN afectar el contenido
+        -webkit-backdrop-filter: blur(8px); // soporte Safari
+        padding: 10px 20px;
+        transform: translateX(-180%);
+        border-radius: 10px;
+        // border: solid 5px red;
+        // box-shadow: 0px 0px 6px 1px #00000070;
+        width: 75%;
+        .formInput {
+          position: relative;
+          width: 100%;
+          margin: 10px 0;
+
+          label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: $logo;
+            font-size: 14px;
+            pointer-events: none;
+            transition: 0.25s ease;
+          }
+
+          .inputForm {
+            width: 100%;
+            height: 30px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            border: solid 1px rgb(201, 201, 201, 0.5);
+            box-shadow: inset 0px 0px 5px 3px #00000020;
+            padding: 0 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            margin: 5px 0;
+            transition: 0.25s ease;
+            color: $logo;
+            &::placeholder {
+              color: transparent;
+            }
+          }
+
+          /* 🔥 1) Cuando el input tiene focus */
+          &:focus-within label {
+            // top: 0;
+            transform: translateY(-30px);
+            font-size: 11px;
+            opacity: 0.8;
+          }
+
+          /* 🔥 2) Cuando el input TIENE texto (y no está vacío) */
+          .inputForm:not(:placeholder-shown) + label {
+            // top: 0;
+            transform: translateY(-30px);
+            font-size: 11px;
+            color: $logo2;
+            opacity: 0.8;
+          }
+        }
+        .formInputTdo {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          margin: 10px 0;
+
+          label {
+            font-size: 13px;
+            color: $logo;
+          }
+
+          .selectApple {
+            position: relative;
+            width: 100%;
+            font-size: 14px;
+
+            &__trigger {
+              width: 100%;
+              width: 100%;
+              height: 30px;
+              outline: none;
+              background: rgba(255, 255, 255, 0.3);
+              border: solid 1px rgb(201, 201, 201, 0.5);
+              box-shadow: inset 0px 0px 5px 3px #00000020;
+              padding: 0 10px;
+              border-radius: 3px;
+              font-size: 14px;
+              margin: 5px 0;
+              transition: 0.25s ease;
+              color: $logo;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              .selectApple__label {
+                color: $logo;
+                font-size: 14px;
+              }
+            }
+
+            &__trigger:hover {
+              border: solid 1px rgb(201, 201, 201, 0.5);
+              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            }
+
+            &__list {
+              position: absolute;
+              top: 100%;
+              left: 0;
+              right: 0;
+              margin-top: 6px;
+              background: rgb(148, 148, 148);
+              backdrop-filter: blur(5px);
+              border-radius: 3px;
+              box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+              overflow: hidden;
+              max-height: 0;
+              opacity: 0;
+              // transform: translateY(-6px);
+              pointer-events: none;
+              transition: max-height 0.22s ease-out, opacity 0.22s ease-out,
+                transform 0.22s ease-out;
+              list-style: none;
+              padding: 0;
+              // z-index: 50;
+            }
+
+            &__list li {
+              padding: 8px 14px;
+              cursor: pointer;
+              font-size: 14px;
+              color: $logo;
+              transition: background 0.15s ease-out, color 0.15s ease-out;
+              z-index: 5;
+              &:hover {
+                background: rgba(0, 0, 0, 0.04);
+              }
+            }
+
+            &.open {
+              .selectApple__list {
+                max-height: 220px;
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+              }
+
+              .selectApple__trigger .selectApple__icon {
+                transform: translateY(1px) rotate(180deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

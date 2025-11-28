@@ -50,7 +50,7 @@
         </div>
       </div>
     </section>
-    <section id="nosotros">
+    <!-- <section id="nosotros">
       <h1>nosotros</h1>
     </section>
     <section id="proyectos">
@@ -58,8 +58,106 @@
     </section>
     <section id="certificaciones">
       <h1>certificaciones</h1>
+    </section> -->
+    <section id="contacto">
+      <div class="contacto01Container">
+        <div class="contacto01">
+          <p class="contactoTitulo1">Confianos tu proyecto</p>
+          <p class="contactoTitulo2">y lo haremos realidad.</p>
+
+          <div class="contactoTextoContainer">
+            <p class="contactoTexto">
+              Dejanos tus datos y un asesor de nuestro equipo te va a responder
+              a la brevedad con toda la información que necesitás para avanzar
+              con tu obra.
+            </p>
+          </div>
+          <div class="contactoBotonContainer">
+            <button class="botonForm">formulario</button>
+          </div>
+        </div>
+      </div>
+      <div class="contacto02Container">
+        <div class="contacto02">
+          <form class="formulario" enctype="multipart/form-data">
+            <div class="formInput">
+              <input
+                placeholder=" "
+                class="inputForm"
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+              />
+              <label class="labelNombre" for="nombre">Nombre/Empresa</label>
+            </div>
+
+            <div class="formInput">
+              <input
+                placeholder=" "
+                class="inputForm"
+                type="email"
+                id="email"
+                name="email"
+                required
+              />
+              <label for="email">E-mail</label>
+            </div>
+
+            <div class="formInput">
+              <input
+                placeholder=" "
+                class="inputForm"
+                type="tel"
+                id="telefono"
+                name="telefono"
+                required
+              />
+              <label for="telefono">Teléfono</label>
+            </div>
+
+            <div class="formInputTdo">
+              <label for="tipoObra">Tipo de obra</label>
+
+              <div class="selectApple" data-name="tipoObra">
+                <button type="button" class="selectApple__trigger">
+                  <span class="selectApple__label">Elegi la opción</span>
+                
+                </button>
+
+                <ul class="selectApple__list">
+                  <li data-value="construccion">Construcción</li>
+                  <li data-value="refaccion">Refacción</li>
+                  <li data-value="ampliacion">Ampliación</li>
+                  <li data-value="mantenimiento">Mantenimiento</li>
+                  <li data-value="render">Diseño / Render 3D</li>
+                </ul>
+
+                <input type="hidden" name="tipoObra" id="tipoObra" required />
+              </div>
+            </div>
+
+            <!-- <div class="formInput">
+              <label for="imagenes">Adjuntar imágenes / planos</label>
+              <input
+                type="file"
+                id="imagenes"
+                name="imagenes[]"
+                multiple
+                accept="image/*,application/pdf"
+              />
+            </div> -->
+
+            <!-- <div class="formInput">
+              <label for="mensaje">Detalles del proyecto</label>
+              <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+            </div> -->
+
+            <button type="submit" class="btnEnviar">Enviar</button>
+          </form>
+        </div>
+      </div>
     </section>
-    <section id="contacto"><h1>contacto</h1></section>
     <footer>
       <div class="footerArriba">
         <div class="footer01">

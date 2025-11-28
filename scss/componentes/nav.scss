@@ -9,6 +9,8 @@ body {
     justify-content: space-between;
     position: absolute;
     z-index: 10;
+    // display: none;
+    
     .logo {
       font-size: 25px;
       font-family: "novecento";
@@ -61,7 +63,5 @@ body {
   }
 }
 @media (max-width: 737px) {
-  nav {
-    background-color: red;
-  }
+
 }

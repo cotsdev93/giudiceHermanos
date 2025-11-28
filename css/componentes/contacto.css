@@ -1,6 +1,17 @@
-body #contacto {
-  width: 100%;
-  height: 100vh;
-}
+/* Error: Undefined variable.
+ *    ,
+ * 36 |           color: $logo;
+ *    |                  ^^^^^
+ *    '
+ *   scss\componentes\contacto.scss 36:18  root stylesheet */
 
-/*# sourceMappingURL=contacto.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 36 \2502            color: $logo;\d\a    \2502                   ^^^^^\a    \2575 \a   scss\\componentes\\contacto.scss 36:18  root stylesheet";
+}
