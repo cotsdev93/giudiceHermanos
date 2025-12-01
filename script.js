@@ -88,28 +88,43 @@ sloganTarget.forEach((sloganTarget) => {
       setTimeout(() => {
         slogan02.style.transform = "translateY(100%)";
       }, 500);
-
     }, 300);
   });
 });
 
 /////////////////////////////////////////// contact
 
-const botonForm = document.querySelector(".botonForm")
-const contacto02 = document.querySelector(".contacto02")
-const contactoTitulo2 = document.querySelector(".contactoTitulo2")
-const contacto02Container = document.querySelector(".contacto02Container")
-
-botonForm.addEventListener("click", ()=>{
-  contacto02.style.transform = "translateX(0%)"
-  contactoTitulo2.style.color = "rgb(230, 194, 73)"
-  contacto02Container.classList.add("after")
-  setTimeout(() => {
-    contacto02.style.boxShadow = "0px 0px 6px 1px #00000070"
-  }, 1001);
-})
-
+const botonForm = document.querySelector(".botonForm");
+const contacto02 = document.querySelector(".contacto02");
+const contactoTitulo2 = document.querySelector(".contactoTitulo2");
+const contacto02Container = document.querySelector(".contacto02Container");
+const btnEnviarForm = document.querySelector(".btnEnviarForm");
 const customSelects = document.querySelectorAll(".selectApple");
+const upload = document.querySelector("#imagenes");
+const estado = document.querySelector(".estadoArchivo");
+
+botonForm.addEventListener("click", () => {
+  contacto02.style.transform = "translateX(0%)";
+  contactoTitulo2.style.color = "rgb(230, 194, 73)";
+  setTimeout(() => {
+    contacto02Container.classList.add("after");
+  }, 500);
+  setTimeout(() => {
+    contacto02.style.boxShadow = "0px 0px 6px 1px #00000070";
+  }, 1001);
+});
+
+btnEnviarForm.addEventListener("click", () => {
+  btnEnviarForm.style.backgroundColor = "green";
+  contacto02.style.boxShadow = "none";
+  contactoTitulo2.style.color = "rgb(70, 205, 49)";
+  setTimeout(() => {
+    contacto02.style.transform = "translateX(+150%)";
+  }, 500);
+  setTimeout(() => {
+    contacto02Container.classList.remove("after");
+  }, 200);
+});
 
 customSelects.forEach((select) => {
   const trigger = select.querySelector(".selectApple__trigger");
@@ -141,3 +156,13 @@ document.addEventListener("click", (e) => {
   });
 });
 
+const input = document.querySelector("#imagenes");
+const estadoArchivo = document.querySelector(".estadoArchivo");
+
+input.addEventListener("change", () => {
+  if (input.files.length > 0) {
+    estadoArchivo.textContent = `${input.files.length} archivo(s) cargado(s)`;
+  } else {
+    estadoArchivo.textContent = "Ningún archivo seleccionado";
+  }
+});

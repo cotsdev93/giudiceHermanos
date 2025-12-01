@@ -73,7 +73,7 @@
             </p>
           </div>
           <div class="contactoBotonContainer">
-            <button class="botonForm">formulario</button>
+            <button class="botonForm">Formulario</button>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
                 type="text"
                 id="nombre"
                 name="nombre"
-                required
+                autocomplete="name"
               />
               <label class="labelNombre" for="nombre">Nombre/Empresa</label>
             </div>
@@ -99,7 +99,7 @@
                 type="email"
                 id="email"
                 name="email"
-                required
+                autocomplete="email"
               />
               <label for="email">E-mail</label>
             </div>
@@ -111,49 +111,81 @@
                 type="tel"
                 id="telefono"
                 name="telefono"
-                required
+                autocomplete="tel"
               />
               <label for="telefono">Teléfono</label>
             </div>
 
-            <div class="formInputTdo">
-              <label for="tipoObra">Tipo de obra</label>
+            <div class="formSection">
+              <div class="formInputTdo">
+                <label for="tipoObraSelect">Tipo de obra</label>
 
-              <div class="selectApple" data-name="tipoObra">
-                <button type="button" class="selectApple__trigger">
-                  <span class="selectApple__label">Elegi la opción</span>
-                
-                </button>
+                <div class="selectApple" data-name="tipoObra">
+                  <button
+                    type="button"
+                    class="selectApple__trigger"
+                    id="tipoObraSelect"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                  >
+                    <span class="selectApple__label">Elegi la opción</span>
+                  </button>
 
-                <ul class="selectApple__list">
-                  <li data-value="construccion">Construcción</li>
-                  <li data-value="refaccion">Refacción</li>
-                  <li data-value="ampliacion">Ampliación</li>
-                  <li data-value="mantenimiento">Mantenimiento</li>
-                  <li data-value="render">Diseño / Render 3D</li>
-                </ul>
+                  <ul
+                    class="selectApple__list"
+                    role="listbox"
+                    aria-labelledby="tipoObraSelect"
+                  >
+                    <li data-value="construccion" role="option">
+                      Construcción
+                    </li>
+                    <li data-value="refaccion" role="option">Refacción</li>
+                    <li data-value="ampliacion" role="option">Ampliación</li>
+                    <li data-value="mantenimiento" role="option">
+                      Mantenimiento
+                    </li>
+                    <li data-value="render" role="option">
+                      Diseño / Render 3D
+                    </li>
+                  </ul>
 
-                <input type="hidden" name="tipoObra" id="tipoObra" required />
+                  <input
+                    type="hidden"
+                    name="tipoObra"
+                    id="tipoObraValue"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="formInputImg">
+                <label for="imagenes">Imágenes/planos</label>
+                <div class="inputContainer">
+                  <input
+                    type="file"
+                    id="imagenes"
+                    name="imagenes[]"
+                    multiple
+                    accept="image/*,application/pdf"
+                    class="inputImg"
+                  />
+                  <span class="estadoArchivo">Ningún archivo seleccionado</span>
+                </div>
               </div>
             </div>
 
-            <!-- <div class="formInput">
-              <label for="imagenes">Adjuntar imágenes / planos</label>
-              <input
-                type="file"
-                id="imagenes"
-                name="imagenes[]"
-                multiple
-                accept="image/*,application/pdf"
-              />
-            </div> -->
-
-            <!-- <div class="formInput">
+            <div class="formInputTexto">
               <label for="mensaje">Detalles del proyecto</label>
-              <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-            </div> -->
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                autocomplete="off"
+              ></textarea>
+            </div>
 
-            <button type="submit" class="btnEnviar">Enviar</button>
+            <button type="button" class="btnEnviarForm">Enviar</button>
           </form>
         </div>
       </div>

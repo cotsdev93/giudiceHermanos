@@ -3,6 +3,7 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
+    overflow: hidden;
     .contacto01Container {
       width: 45%;
       height: 100%;
@@ -59,13 +60,31 @@ body {
           justify-content: flex-end;
 
           .botonForm {
-            color: $main;
-            background-color: $logo;
-            border: none;
-            outline: none;
             width: 100px;
-            height: 20px;
+            height: 35px;
             border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+
+            backdrop-filter: blur(8px);
+            color: $main;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.28s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            color: $logo;
+            font-weight: 400;
+            &:hover {
+              background: rgba(255, 255, 255, 0.3);
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+              transform: translateY(-0.5px);
+            }
+
+            &:active {
+              transform: translateY(0);
+              background: rgba(255, 255, 255, 0.35);
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            }
           }
         }
       }
@@ -91,29 +110,28 @@ body {
         content: "";
         position: absolute;
         inset: 0;
-        background: rgba(255, 255, 255, 0.569); // transparente
+        background: rgba(255, 255, 255, 0.569);
         opacity: 0; // oculto
-        transition: 1.5s ease-out; // 🔥 transición acá
+        transition: 1.5s ease-out;
         pointer-events: none;
       }
 
       &.after::after {
-        background: rgba(255, 255, 255, 0.3); // visible
+        background: rgba(255, 255, 255, 0.3);
         opacity: 0.5; // fade-in
       }
 
       .contacto02 {
         transition: 1s ease-in-out, box-shadow 0.5s;
         border: solid 1px rgb(201, 201, 201, 0.5);
-        backdrop-filter: blur(
-          8px
-        ); // 🔥 blur del fondo SIN afectar el contenido
-        -webkit-backdrop-filter: blur(8px); // soporte Safari
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         padding: 10px 20px;
         transform: translateX(-180%);
         border-radius: 10px;
-        // border: solid 5px red;
-        // box-shadow: 0px 0px 6px 1px #00000070;
+        display: flex;
+        flex-direction: column;
+
         width: 75%;
         .formInput {
           position: relative;
@@ -126,6 +144,7 @@ body {
             left: 10px;
             transform: translateY(-50%);
             color: $logo;
+            text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
             font-size: 14px;
             pointer-events: none;
             transition: 0.25s ease;
@@ -145,6 +164,7 @@ body {
             margin: 5px 0;
             transition: 0.25s ease;
             color: $logo;
+        
             &::placeholder {
               color: transparent;
             }
@@ -167,96 +187,186 @@ body {
             opacity: 0.8;
           }
         }
-        .formInputTdo {
+        .formSection {
+          width: 100%;
           display: flex;
-          flex-direction: column;
-          gap: 4px;
-          margin: 10px 0;
+          .formInputTdo {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 10px 5px;
+            width: 50%;
 
-          label {
-            font-size: 13px;
-            color: $logo;
-          }
-
-          .selectApple {
-            position: relative;
-            width: 100%;
-            font-size: 14px;
-
-            &__trigger {
-              width: 100%;
-              width: 100%;
-              height: 30px;
-              outline: none;
-              background: rgba(255, 255, 255, 0.3);
-              border: solid 1px rgb(201, 201, 201, 0.5);
-              box-shadow: inset 0px 0px 5px 3px #00000020;
-              padding: 0 10px;
-              border-radius: 3px;
-              font-size: 14px;
-              margin: 5px 0;
-              transition: 0.25s ease;
+            // border: solid 1px red;
+            label {
+              font-size: 13px;
               color: $logo;
-              display: flex;
-              justify-content: flex-start;
-              align-items: center;
-              .selectApple__label {
-                color: $logo;
+              text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
+              // border: solid 1px red;
+            }
+
+            .selectApple {
+              // border: solid 1px rgb(97, 238, 9);
+              // position: relative;
+              // width: 100%;
+              // font-size: 14px;
+              // cursor: pointer;
+              // border: solid 1px red;
+              transform: translateY(4px);
+              &__trigger {
+                width: 100%;
+                width: 100%;
+                height: 30px;
+                outline: none;
+                background: rgba(255, 255, 255, 0.3);
+                border: solid 1px rgb(201, 201, 201, 0.5);
+                box-shadow: inset 0px 0px 5px 3px #00000020;
+                padding: 0 10px;
+                border-radius: 3px;
                 font-size: 14px;
+                margin: 5px 0;
+                transition: 0.25s ease;
+                color: $logo;
+                text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                cursor: pointer;
+                .selectApple__label {
+                  color: $logo;
+                  font-size: 14px;
+                }
+              }
+
+              &__trigger:hover {
+                border: solid 1px rgb(201, 201, 201, 0.5);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                // border: solid 1px red;
+              }
+
+              &__list {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                margin-top: 1px;
+                background: rgb(148, 148, 148);
+                backdrop-filter: blur(5px);
+                border-radius: 3px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                // transform: translateY(-6px);
+                pointer-events: none;
+                transition: max-height 0.22s ease-out, opacity 0.22s ease-out,
+                  transform 0.22s ease-out;
+                list-style: none;
+                padding: 0;
+                // z-index: 50;
+              }
+
+              &__list li {
+                padding: 8px 14px;
+                cursor: pointer;
+                font-size: 14px;
+                color: $logo;
+                transition: background 0.15s ease-out, color 0.15s ease-out;
+                z-index: 5;
+                &:hover {
+                  background: rgba(0, 0, 0, 0.04);
+                }
+              }
+
+              &.open {
+                .selectApple__list {
+                  max-height: 220px;
+                  opacity: 1;
+                  transform: translateY(0);
+                  pointer-events: auto;
+                }
+
+                .selectApple__trigger .selectApple__icon {
+                  transform: translateY(1px) rotate(180deg);
+                }
               }
             }
-
-            &__trigger:hover {
-              border: solid 1px rgb(201, 201, 201, 0.5);
-              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            }
-
-            &__list {
-              position: absolute;
-              top: 100%;
-              left: 0;
-              right: 0;
-              margin-top: 6px;
-              background: rgb(148, 148, 148);
-              backdrop-filter: blur(5px);
-              border-radius: 3px;
-              box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
-              overflow: hidden;
-              max-height: 0;
-              opacity: 0;
-              // transform: translateY(-6px);
-              pointer-events: none;
-              transition: max-height 0.22s ease-out, opacity 0.22s ease-out,
-                transform 0.22s ease-out;
-              list-style: none;
-              padding: 0;
-              // z-index: 50;
-            }
-
-            &__list li {
-              padding: 8px 14px;
-              cursor: pointer;
-              font-size: 14px;
+          }
+          .formInputImg {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 10px 0;
+            width: 50%;
+            border: solid 1px transparent;
+            label {
+              font-size: 13px;
+              display: flex;
               color: $logo;
-              transition: background 0.15s ease-out, color 0.15s ease-out;
-              z-index: 5;
-              &:hover {
-                background: rgba(0, 0, 0, 0.04);
+              text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
+              border: solid 1px transparent;
+            }
+            .inputContainer {
+              width: 100%;
+              height: auto;
+              transform: translateY(1px);
+              // border: solid 1px red;
+              input#imagenes.inputImg {
+                width: 100%;
+                height: 40px;
+                border: solid 1px transparent;
+              }
+              .inputImg#imagenes::file-selector-button {
+                width: 100%;
+                height: 30px;
+                margin: 5px 0;
+                padding: 0 10px;
+                cursor: pointer;
+
+                font-size: 14px;
+                color: $logo;
+                text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
+                background: rgba(255, 255, 255, 0.3);
+                border: 1px solid rgba(201, 201, 201, 0.5);
+                border-radius: 3px;
+                box-shadow: inset 0 0 5px 3px #00000020;
+
+                outline: none;
+                transition: 0.25s ease;
+
+                &:hover {
+                  border: 1px solid rgba(201, 201, 201, 0.5);
+                  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                }
+              }
+
+              input#imagenes {
+                color: transparent; // oculta el texto del filename
+              }
+
+              .estadoArchivo {
+                font-size: 12px;
+                color: $logo;
+                text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
+                font-style: italic;
+                margin-left: 10px;
               }
             }
-
-            &.open {
-              .selectApple__list {
-                max-height: 220px;
-                opacity: 1;
-                transform: translateY(0);
-                pointer-events: auto;
-              }
-
-              .selectApple__trigger .selectApple__icon {
-                transform: translateY(1px) rotate(180deg);
-              }
-            }
+          }
+        }
+        .btnEnviarForm {
+          width: 50%;
+          height: 28px;
+          border: none;
+          outline: none;
+          color: $logo;
+          border-radius: 5px;
+          background-color: $azul;
+          transition: background-color 0.2s;
+          box-shadow: inset 0px 0px 5px 2px #00000050;
+          cursor: pointer;
+          &:hover {
+            background-color: rgb(33, 111, 205);
           }
         }
       }
