@@ -130,14 +130,15 @@ body {
         transform: translateX(-180%);
         border-radius: 10px;
         display: flex;
-        flex-direction: column;
-
+        // flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // border: solid 1px red;
         width: 75%;
         .formInput {
           position: relative;
           width: 100%;
           margin: 10px 0;
-
           label {
             position: absolute;
             top: 50%;
@@ -164,7 +165,8 @@ body {
             margin: 5px 0;
             transition: 0.25s ease;
             color: $logo;
-        
+            text-shadow: -1px 1px 6px rgb(0, 0, 0, 0.3);
+
             &::placeholder {
               color: transparent;
             }
@@ -354,19 +356,56 @@ body {
             }
           }
         }
-        .btnEnviarForm {
-          width: 50%;
-          height: 28px;
-          border: none;
-          outline: none;
-          color: $logo;
-          border-radius: 5px;
-          background-color: $azul;
-          transition: background-color 0.2s;
-          box-shadow: inset 0px 0px 5px 2px #00000050;
-          cursor: pointer;
-          &:hover {
-            background-color: rgb(33, 111, 205);
+        .formInputTexto {
+          display: flex;
+          flex-direction: column;
+          label {
+            font-size: 13px;
+            color: $logo;
+            text-shadow: -1px 1px 5px rgb(0, 0, 0, 0.7);
+          }
+          textarea#mensaje {
+            width: 100%;
+            height: 50px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            border: solid 1px rgb(201, 201, 201, 0.5);
+            box-shadow: inset 0px 0px 5px 3px #00000020;
+            padding: 0 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            margin: 5px 0;
+            transition: 0.25s ease;
+            color: $logo;
+            text-shadow: -1px 1px 6px rgb(0, 0, 0, 0.3); resize: none;
+          }
+        }
+        .btnEnviarContainer {
+          // border: solid 4px red;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          .btnEnviarForm {
+            display: flex;
+            width: 50%;
+            height: 28px;
+            border: none;
+            outline: none;
+            color: $logo;
+            border-radius: 5px;
+            background-color: $azul;
+            transition: background-color 0.2s;
+            box-shadow: inset 0px 0px 5px 2px #00000050;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+            &:hover {
+              background-color: rgb(33, 111, 205);
+            }
           }
         }
       }

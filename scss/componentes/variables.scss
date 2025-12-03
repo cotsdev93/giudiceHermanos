@@ -20,4 +20,7 @@ $azul: #195fd8;
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: "Roboto", sans-serif;
+  ::-webkit-scrollbar{
+    display: none;
+  }
 }

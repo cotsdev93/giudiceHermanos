@@ -3,6 +3,7 @@ function intro() {
   const titulo1 = document.querySelector(".titulo1");
   const titulo2 = document.querySelector(".titulo2");
   const titulo3 = document.querySelector(".titulo3");
+  const body = document.querySelector("body");
 
   setTimeout(() => {
     titulo1.style.opacity = "1";
@@ -17,6 +18,10 @@ function intro() {
   setTimeout(() => {
     mainIntro.style.transform = "translateY(-100%)";
   }, 2300);
+
+  setTimeout(() => {
+    body.style.overflowY = "auto";
+  }, 2700);
 }
 
 intro();
@@ -76,6 +81,7 @@ sloganTarget.forEach((sloganTarget) => {
 
 sloganTarget.forEach((sloganTarget) => {
   sloganTarget.addEventListener("mouseleave", () => {
+    setTimeout(() => {
     slogan01.style.textShadow = "none";
 
     setTimeout(() => {
@@ -89,6 +95,7 @@ sloganTarget.forEach((sloganTarget) => {
         slogan02.style.transform = "translateY(100%)";
       }, 500);
     }, 300);
+    }, 1500);
   });
 });
 
@@ -165,4 +172,113 @@ input.addEventListener("change", () => {
   } else {
     estadoArchivo.textContent = "Ningún archivo seleccionado";
   }
+});
+
+////////////////////////////////// proyectos
+
+const proyectos = document.getElementById("proyectos");
+const banner01 = document.querySelector(".banner01");
+const direccionObra = document.querySelector(".direccionObra");
+
+class Banner01 {
+  constructor() {
+    this.imagenes = [];
+    this.init();
+  }
+
+  async init() {
+    await this.cargarImagenes();
+    this.renderImagenes();
+  }
+
+  async cargarImagenes() {
+    try {
+      const res = await fetch("./data/banner01.json");
+      this.imagenes = await res.json();
+    } catch (error) {
+      console.error("Error cargando JSON:", error);
+    }
+  }
+
+  renderImagenes() {
+    banner01.innerHTML = "";
+
+    this.imagenes.forEach((imgObj) => {
+      banner01.innerHTML += `
+        <img class="imgBanner" src="${imgObj.img}" alt="Banner" >
+      `;
+    });
+  }
+}
+
+console.log("funca");
+
+new Banner01();
+
+let hideTimer = null; // timer para volver al estado normal
+
+proyectos.addEventListener("mouseenter", () => {
+  // si había un timer de salida esperando, lo cancelo
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
+
+  // SI YA ESTÁ EN "top", NO TOCAR EL BANNER (queda trabado)
+  if (direccionObra.classList.contains("top")) {
+    // sigue en translateX(0%) y blur(0)
+    return;
+  }
+
+  // si el texto NO está en "top", dejo que se pueda clickear
+  direccionObra.style.pointerEvents = "auto";
+
+  // animación de entrada (banner a -40%)
+  setTimeout(() => {
+    banner01.style.transform = "translateX(-40%)";
+  }, 200);
+});
+
+proyectos.addEventListener("mouseleave", () => {
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+  }
+
+  hideTimer = setTimeout(() => {
+    // después de 3s afuera → volver al estado normal
+    banner01.style.transform = "translateX(-101%)";
+
+    setTimeout(() => {
+      banner01.style.filter = "blur(4px)";
+    }, 500);
+
+    direccionObra.style.pointerEvents = "auto";
+
+    setTimeout(() => {
+      direccionObra.classList.remove("top"); // se “destraba” para futuros hovers
+    }, 300);
+
+    hideTimer = null;
+  }, 3000);
+});
+
+direccionObra.addEventListener("click", () => {
+  // si había un timer de salida pendiente, lo cancelo
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
+
+  // centro el banner
+  setTimeout(() => {
+    banner01.style.transform = "translateX(0%)";
+  }, 300);
+
+  setTimeout(() => {
+    banner01.style.filter = "blur(0px)";
+  }, 1350);
+
+  // marco estado "trabado"
+  direccionObra.classList.add("top");
+  direccionObra.style.pointerEvents = "none";
 });

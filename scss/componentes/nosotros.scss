@@ -1,6 +1,41 @@
-body{
-    #nosotros{
-        width: 100%;
-        height: 100vh;
+body {
+  #nosotros {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // position: relative;
+    padding: 40px 0px;
+    overflow: hidden;
+    .banner01 {
+      width: 80%;
+      height: 25vh;
+      border: solid 2px white;
+      transform: translateX(-101%);
+      transition: 1s ease-in-out;
+      cursor: pointer;
     }
+    .banner02 {
+      width: 80%;
+      height: 25vh;
+      border: solid 2px white;
+      //   position: absolute;
+      //   right: -100%;
+      //   top: 50%;
+      transform: translateX(-101%);
+      //   transform: translateX(10%);
+      transition: 1s ease-in-out;
+      cursor: pointer;
+    }
+    .banner03 {
+      width: 80%;
+      height: 25vh;
+      border: solid 2px white;
+      transform: translateX(-101%);
+      transition: 1s ease-in-out;
+      cursor: pointer;
+    }
+  }
 }

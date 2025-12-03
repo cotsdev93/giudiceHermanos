@@ -14,11 +14,15 @@
   scroll-behavior: smooth;
   font-family: "Roboto", sans-serif;
 }
+* ::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 body #intro {
   z-index: 10;
@@ -185,12 +189,108 @@ body nav .nav2 ul li:hover {
 body #nosotros {
   width: 100%;
   height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 0px;
+  overflow: hidden;
+}
+body #nosotros .banner01 {
+  width: 80%;
+  height: 25vh;
+  border: solid 2px white;
+  transform: translateX(-101%);
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
+body #nosotros .banner02 {
+  width: 80%;
+  height: 25vh;
+  border: solid 2px white;
+  transform: translateX(-101%);
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
+body #nosotros .banner03 {
+  width: 80%;
+  height: 25vh;
+  border: solid 2px white;
+  transform: translateX(-101%);
+  transition: 1s ease-in-out;
+  cursor: pointer;
 }
 
 body #proyectos {
   width: 100%;
   height: 100vh;
-  border: solid 5px brown;
+  background: radial-gradient(circle, #d3cbbc 0%, rgb(219.4, 209.8, 190.8) 40%, rgb(216.25, 207.25, 189.75) 80%, rgb(212.2144578313, 189.8915662651, 143.3855421687) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 70px 0px;
+  transition: box-shadow 0.2s, transform 0.5s ease-out;
+}
+body #proyectos:hover {
+  box-shadow: inset 0 0 15px rgba(99, 99, 99, 0.45);
+}
+body #proyectos .banner01Container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body #proyectos .banner01Container:hover .direccionObra {
+  text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2509803922);
+  color: #d3cbbc;
+}
+body #proyectos .banner01Container .banner01 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  transition: transform 1s ease, filter 0.3s;
+  transform: translateX(-101%);
+  filter: blur(4px);
+}
+body #proyectos .banner01Container .banner01 .imgBanner {
+  width: 20%;
+  height: auto;
+  transition: 0.3s;
+  background-size: contain;
+  width: 20%;
+}
+body #proyectos .banner01Container .direccionObra {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: #e8dcc3;
+  transition: 0.5s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+body #proyectos .banner01Container .top {
+  top: -25px;
+}
+body #proyectos .banner02 {
+  width: 80%;
+  height: 25vh;
+  border: solid 2px white;
+  transform: translateX(-101%);
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
+body #proyectos .banner03 {
+  width: 80%;
+  height: 25vh;
+  border: solid 2px white;
+  transform: translateX(-101%);
+  transition: 1s ease-in-out;
+  cursor: pointer;
 }
 
 body #certificaciones {
@@ -318,7 +418,8 @@ body #contacto .contacto02Container .contacto02 {
   transform: translateX(-180%);
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 75%;
 }
 body #contacto .contacto02Container .contacto02 .formInput {
@@ -351,6 +452,7 @@ body #contacto .contacto02Container .contacto02 .formInput .inputForm {
   margin: 5px 0;
   transition: 0.25s ease;
   color: #e8dcc3;
+  text-shadow: -1px 1px 6px rgba(0, 0, 0, 0.3);
 }
 body #contacto .contacto02Container .contacto02 .formInput .inputForm::placeholder {
   color: transparent;
@@ -512,7 +614,40 @@ body #contacto .contacto02Container .contacto02 .formSection .formInputImg .inpu
   font-style: italic;
   margin-left: 10px;
 }
-body #contacto .contacto02Container .contacto02 .btnEnviarForm {
+body #contacto .contacto02Container .contacto02 .formInputTexto {
+  display: flex;
+  flex-direction: column;
+}
+body #contacto .contacto02Container .contacto02 .formInputTexto label {
+  font-size: 13px;
+  color: #e8dcc3;
+  text-shadow: -1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+body #contacto .contacto02Container .contacto02 .formInputTexto textarea#mensaje {
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  border: solid 1px rgba(201, 201, 201, 0.5);
+  box-shadow: inset 0px 0px 5px 3px rgba(0, 0, 0, 0.1254901961);
+  padding: 0 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  margin: 5px 0;
+  transition: 0.25s ease;
+  color: #e8dcc3;
+  text-shadow: -1px 1px 6px rgba(0, 0, 0, 0.3);
+  resize: none;
+}
+body #contacto .contacto02Container .contacto02 .btnEnviarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+body #contacto .contacto02Container .contacto02 .btnEnviarContainer .btnEnviarForm {
+  display: flex;
   width: 50%;
   height: 28px;
   border: none;
@@ -523,8 +658,12 @@ body #contacto .contacto02Container .contacto02 .btnEnviarForm {
   transition: background-color 0.2s;
   box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.3137254902);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
 }
-body #contacto .contacto02Container .contacto02 .btnEnviarForm:hover {
+body #contacto .contacto02Container .contacto02 .btnEnviarContainer .btnEnviarForm:hover {
   background-color: rgb(33, 111, 205);
 }
 
