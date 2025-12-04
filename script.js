@@ -64,8 +64,22 @@ const sloganTarget = document.querySelectorAll(
 const slogan01 = document.querySelector(".slogan01");
 const slogan02 = document.querySelector(".slogan02");
 
-sloganTarget.forEach((sloganTarget) => {
-  sloganTarget.addEventListener("mouseenter", () => {
+// timer + estado para controlar entrada/salida del slogan
+let sloganHideTimer = null;
+let sloganIsShown = false;
+
+sloganTarget.forEach((target) => {
+  target.addEventListener("mouseenter", () => {
+    // si había timer de salida, lo cancelo
+    if (sloganHideTimer) {
+      clearTimeout(sloganHideTimer);
+      sloganHideTimer = null;
+    }
+
+    // si ya está mostrado, no re-ejecuto animación de entrada
+    if (sloganIsShown) return;
+    sloganIsShown = true;
+
     slogan01.style.transform = "translateY(0%)";
     setTimeout(() => {
       slogan01.style.textShadow = "-2px 2px 2px rgb(0, 0, 0, 2)";
@@ -79,22 +93,25 @@ sloganTarget.forEach((sloganTarget) => {
   });
 });
 
-sloganTarget.forEach((sloganTarget) => {
-  sloganTarget.addEventListener("mouseleave", () => {
-    setTimeout(() => {
-    slogan01.style.textShadow = "none";
-
-    setTimeout(() => {
-      slogan01.style.transform = "translateY(100%)";
-    }, 300);
-
-    setTimeout(() => {
-      slogan02.style.textShadow = "none";
+sloganTarget.forEach((target) => {
+  target.addEventListener("mouseleave", () => {
+    // si no vuelve a entrar en 1500ms, recién ahí hago la salida
+    sloganHideTimer = setTimeout(() => {
+      slogan01.style.textShadow = "none";
 
       setTimeout(() => {
-        slogan02.style.transform = "translateY(100%)";
-      }, 500);
-    }, 300);
+        slogan01.style.transform = "translateY(100%)";
+      }, 300);
+
+      setTimeout(() => {
+        slogan02.style.textShadow = "none";
+
+        setTimeout(() => {
+          slogan02.style.transform = "translateY(100%)";
+          sloganIsShown = false; // acá se resetea para permitir nueva entrada
+          sloganHideTimer = null; // limpio timer
+        }, 500);
+      }, 300);
     }, 1500);
   });
 });
@@ -175,10 +192,35 @@ input.addEventListener("change", () => {
 });
 
 ////////////////////////////////// proyectos
-
 const proyectos = document.getElementById("proyectos");
 const banner01 = document.querySelector(".banner01");
 const direccionObra = document.querySelector(".direccionObra");
+
+let pendingHover = null;
+
+function bannerEstaBlureado() {
+  return getComputedStyle(banner01).filter.includes("blur(4px)");
+}
+
+function activarHover(container) {
+  const imgBanner = container.querySelector(".imgBanner");
+  const imgTitulo = container.querySelector(".imgTitulo");
+  imgBanner.style.transform = "scale(1.05)";
+  imgBanner.style.filter = "brightness(0.75)";
+  imgTitulo.style.opacity = "1";
+   imgBanner.style.cursor = "pointer"
+}
+
+function desactivarHover(container) {
+  const imgBanner = container.querySelector(".imgBanner");
+  const imgTitulo = container.querySelector(".imgTitulo");
+  imgTitulo.style.opacity = "0";
+  imgBanner.style.cursor = "none"
+  setTimeout(() => {
+    imgBanner.style.transform = "scale(1)";
+    imgBanner.style.filter = "brightness(1)";
+  }, 100);
+}
 
 class Banner01 {
   constructor() {
@@ -203,37 +245,52 @@ class Banner01 {
   renderImagenes() {
     banner01.innerHTML = "";
 
-    this.imagenes.forEach((imgObj) => {
+    this.imagenes.forEach((e) => {
       banner01.innerHTML += `
-        <img class="imgBanner" src="${imgObj.img}" alt="Banner" >
-      `;
+        <div class="imgBannerContainer">
+          <img class="imgBanner" src="${e.img}" alt="Banner">
+          <p class="imgTitulo">${e.titulo}</p>
+        </div>`;
+    });
+
+    const imgBannerContainer = document.querySelectorAll(".imgBannerContainer");
+
+    imgBannerContainer.forEach((container) => {
+      container.addEventListener("mouseenter", () => {
+        if (bannerEstaBlureado()) {
+          pendingHover = container;
+          return;
+        }
+
+        activarHover(container);
+      });
+
+      container.addEventListener("mouseleave", () => {
+        if (pendingHover === container) {
+          pendingHover = null;
+        }
+        desactivarHover(container);
+      });
     });
   }
 }
 
-console.log("funca");
-
 new Banner01();
 
-let hideTimer = null; // timer para volver al estado normal
+let hideTimer = null;
 
 proyectos.addEventListener("mouseenter", () => {
-  // si había un timer de salida esperando, lo cancelo
   if (hideTimer) {
     clearTimeout(hideTimer);
     hideTimer = null;
   }
 
-  // SI YA ESTÁ EN "top", NO TOCAR EL BANNER (queda trabado)
   if (direccionObra.classList.contains("top")) {
-    // sigue en translateX(0%) y blur(0)
     return;
   }
 
-  // si el texto NO está en "top", dejo que se pueda clickear
   direccionObra.style.pointerEvents = "auto";
 
-  // animación de entrada (banner a -40%)
   setTimeout(() => {
     banner01.style.transform = "translateX(-40%)";
   }, 200);
@@ -245,7 +302,6 @@ proyectos.addEventListener("mouseleave", () => {
   }
 
   hideTimer = setTimeout(() => {
-    // después de 3s afuera → volver al estado normal
     banner01.style.transform = "translateX(-101%)";
 
     setTimeout(() => {
@@ -255,7 +311,7 @@ proyectos.addEventListener("mouseleave", () => {
     direccionObra.style.pointerEvents = "auto";
 
     setTimeout(() => {
-      direccionObra.classList.remove("top"); // se “destraba” para futuros hovers
+      direccionObra.classList.remove("top");
     }, 300);
 
     hideTimer = null;
@@ -263,22 +319,24 @@ proyectos.addEventListener("mouseleave", () => {
 });
 
 direccionObra.addEventListener("click", () => {
-  // si había un timer de salida pendiente, lo cancelo
   if (hideTimer) {
     clearTimeout(hideTimer);
     hideTimer = null;
   }
 
-  // centro el banner
   setTimeout(() => {
     banner01.style.transform = "translateX(0%)";
   }, 300);
 
   setTimeout(() => {
     banner01.style.filter = "blur(0px)";
+
+    if (pendingHover) {
+      activarHover(pendingHover);
+      pendingHover = null;
+    }
   }, 1350);
 
-  // marco estado "trabado"
   direccionObra.classList.add("top");
   direccionObra.style.pointerEvents = "none";
 });
