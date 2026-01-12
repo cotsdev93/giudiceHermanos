@@ -33,11 +33,16 @@ const li1 = document.querySelector(".li1");
 const li2 = document.querySelector(".li2");
 const li3 = document.querySelector(".li3");
 const li4 = document.querySelector(".li4");
+const nav = document.querySelector("nav");
 
-function nav() {
+function navAnimation() {
   setTimeout(() => {
-    logo.style.transform = "translateX(0%)";
-  }, 3400);
+    logo.style.transform = "translateX(0%) translateY(-10px)";
+  }, 3700);
+
+  setTimeout(() => {
+    nav.classList.add("nav-bg"); // dispara el overlay con gradient
+  }, 4500);
 
   setTimeout(() => {
     li1.classList.add("nav-in");
@@ -53,7 +58,7 @@ function nav() {
   }, 4600);
 }
 
-nav();
+navAnimation();
 
 //////////////////////////////////// main
 
@@ -93,28 +98,28 @@ sloganTarget.forEach((target) => {
   });
 });
 
-sloganTarget.forEach((target) => {
-  target.addEventListener("mouseleave", () => {
-    // si no vuelve a entrar en 1500ms, recién ahí hago la salida
-    sloganHideTimer = setTimeout(() => {
-      slogan01.style.textShadow = "none";
+// sloganTarget.forEach((target) => {
+//   target.addEventListener("mouseleave", () => {
+//     // si no vuelve a entrar en 1500ms, recién ahí hago la salida
+//     sloganHideTimer = setTimeout(() => {
+//       slogan01.style.textShadow = "none";
 
-      setTimeout(() => {
-        slogan01.style.transform = "translateY(100%)";
-      }, 300);
+//       setTimeout(() => {
+//         slogan01.style.transform = "translateY(100%)";
+//       }, 300);
 
-      setTimeout(() => {
-        slogan02.style.textShadow = "none";
+//       setTimeout(() => {
+//         slogan02.style.textShadow = "none";
 
-        setTimeout(() => {
-          slogan02.style.transform = "translateY(100%)";
-          sloganIsShown = false; // acá se resetea para permitir nueva entrada
-          sloganHideTimer = null; // limpio timer
-        }, 500);
-      }, 300);
-    }, 1500);
-  });
-});
+//         setTimeout(() => {
+//           slogan02.style.transform = "translateY(100%)";
+//           sloganIsShown = false; // acá se resetea para permitir nueva entrada
+//           sloganHideTimer = null; // limpio timer
+//         }, 500);
+//       }, 300);
+//     }, 1500);
+//   });
+// });
 
 /////////////////////////////////////////// contact
 
@@ -194,7 +199,12 @@ input.addEventListener("change", () => {
 ////////////////////////////////// proyectos
 const proyectos = document.getElementById("proyectos");
 const banner01 = document.querySelector(".banner01");
-const direccionObra = document.querySelector(".direccionObra");
+const banner02 = document.querySelector(".banner02");
+const direccionObraContainer = document.querySelector(
+  ".direccionObraContainer"
+);
+const seguridadEHigiene = document.querySelector(".seguridadEHigiene");
+const x = document.querySelectorAll(".fa-x ");
 
 let pendingHover = null;
 
@@ -208,14 +218,14 @@ function activarHover(container) {
   imgBanner.style.transform = "scale(1.05)";
   imgBanner.style.filter = "brightness(0.75)";
   imgTitulo.style.opacity = "1";
-   imgBanner.style.cursor = "pointer"
+  imgBanner.style.cursor = "pointer";
 }
 
 function desactivarHover(container) {
   const imgBanner = container.querySelector(".imgBanner");
   const imgTitulo = container.querySelector(".imgTitulo");
   imgTitulo.style.opacity = "0";
-  imgBanner.style.cursor = "none"
+  imgBanner.style.cursor = "none";
   setTimeout(() => {
     imgBanner.style.transform = "scale(1)";
     imgBanner.style.filter = "brightness(1)";
@@ -277,6 +287,61 @@ class Banner01 {
 
 new Banner01();
 
+class Banner02 {
+  constructor() {
+    this.imagenes = [];
+    this.init();
+  }
+
+  async init() {
+    await this.cargarImagenes();
+    this.renderImagenes();
+  }
+
+  async cargarImagenes() {
+    try {
+      const res = await fetch("./data/banner02.json");
+      this.imagenes = await res.json();
+    } catch (error) {
+      console.error("Error cargando JSON:", error);
+    }
+  }
+
+  renderImagenes() {
+    banner02.innerHTML = "";
+
+    this.imagenes.forEach((e) => {
+      banner02.innerHTML += `
+        <div class="imgBannerContainer">
+          <img class="imgBanner" src="${e.img}" alt="Banner">
+          <p class="imgTitulo">${e.titulo}</p>
+        </div>`;
+    });
+
+    const imgBannerContainer = document.querySelectorAll(".imgBannerContainer");
+
+    imgBannerContainer.forEach((container) => {
+      container.addEventListener("mouseenter", () => {
+        if (bannerEstaBlureado()) {
+          pendingHover = container;
+          return;
+        }
+
+        activarHover(container);
+      });
+
+      container.addEventListener("mouseleave", () => {
+        if (pendingHover === container) {
+          pendingHover = null;
+        }
+        desactivarHover(container);
+      });
+    });
+  }
+}
+
+new Banner02();
+
 let hideTimer = null;
 
 proyectos.addEventListener("mouseenter", () => {
@@ -285,14 +350,17 @@ proyectos.addEventListener("mouseenter", () => {
     hideTimer = null;
   }
 
-  if (direccionObra.classList.contains("top")) {
+  if (direccionObraContainer.classList.contains("top")) {
     return;
   }
 
-  direccionObra.style.pointerEvents = "auto";
+  direccionObraContainer.style.pointerEvents = "auto";
 
   setTimeout(() => {
     banner01.style.transform = "translateX(-40%)";
+    setTimeout(() => {
+      banner02.style.transform = "translateX(-40%)";
+    }, 200);
   }, 200);
 });
 
@@ -318,7 +386,7 @@ proyectos.addEventListener("mouseleave", () => {
   }, 3000);
 });
 
-direccionObra.addEventListener("click", () => {
+direccionObraContainer.addEventListener("click", () => {
   if (hideTimer) {
     clearTimeout(hideTimer);
     hideTimer = null;
@@ -337,6 +405,39 @@ direccionObra.addEventListener("click", () => {
     }
   }, 1350);
 
-  direccionObra.classList.add("top");
-  direccionObra.style.pointerEvents = "none";
+  direccionObraContainer.classList.add("top");
+  direccionObraContainer.style.pointerEvents = "none";
+  setTimeout(() => {
+    x.forEach((el) => {
+      el.style.opacity = "1";
+    });
+  }, 200);
 });
+x.forEach((el) => {
+  el.addEventListener("click", () => {
+    console.log("va")
+  });
+});
+
+// seguridadEHigiene.addEventListener("click", () => {
+//   if (hideTimer) {
+//     clearTimeout(hideTimer);
+//     hideTimer = null;
+//   }
+
+//   setTimeout(() => {
+//     banner02.style.transform = "translateX(0%)";
+//   }, 300);
+
+//   setTimeout(() => {
+//     banner02.style.filter = "blur(0px)";
+
+//     if (pendingHover) {
+//       activarHover(pendingHover);
+//       pendingHover = null;
+//     }
+//   }, 1350);
+
+//   seguridadEHigiene.classList.add("top");
+//   seguridadEHigiene.style.pointerEvents = "none";
+// });

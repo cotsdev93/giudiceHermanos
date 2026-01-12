@@ -132,12 +132,27 @@ body {
 }
 body nav {
   width: 100%;
-  height: 15vh;
+  height: 22vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: absolute;
   z-index: 10;
+  transition: none;
+  overflow: visible;
+}
+body nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s;
+  z-index: -1;
+}
+body nav.nav-bg::before {
+  opacity: 1;
 }
 body nav .logo {
   font-size: 25px;
@@ -146,13 +161,17 @@ body nav .logo {
   font-weight: 600;
   text-shadow: -1px 1px 1px rgb(0, 0, 0);
   margin-left: 20px;
-  transform: translateX(-120%);
+  transform: translateX(-120%) translateY(-10px);
   transition: 2s;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 body nav .nav2 {
   margin-right: 60px;
   margin-top: 10px;
+  position: relative;
+  z-index: 1;
 }
 body nav .nav2 ul {
   display: flex;
@@ -178,12 +197,11 @@ body nav .nav2 ul li a {
 }
 body nav .nav2 ul li.nav-in {
   opacity: 0.8;
-  transform: translateY(0) scale(1);
+  transform: translateY(-10px) scale(1);
 }
 body nav .nav2 ul li:hover {
   opacity: 1;
   text-shadow: -0.5px 0.5px 2px rgb(0, 0, 0);
-  transform: translateY(0) scale(1.03);
 }
 
 body #nosotros {
@@ -223,13 +241,13 @@ body #nosotros .banner03 {
 
 body #proyectos {
   width: 100%;
-  height: 100vh;
   background: radial-gradient(circle, #d3cbbc 0%, rgb(219.4, 209.8, 190.8) 40%, rgb(216.25, 207.25, 189.75) 80%, rgb(212.2144578313, 189.8915662651, 143.3855421687) 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 70px 0px;
   transition: box-shadow 0.2s, transform 0.5s ease-out;
+  gap: 45px;
 }
 body #proyectos:hover {
   box-shadow: inset 0 0 15px rgba(99, 99, 99, 0.45);
@@ -239,12 +257,13 @@ body #proyectos .banner01Container {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
 }
 body #proyectos .banner01Container:hover .direccionObra {
   text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2509803922);
   color: #d3cbbc;
+}
+body #proyectos .banner01Container:hover .fa-x {
+  opacity: 1;
 }
 body #proyectos .banner01Container .banner01 {
   width: 100%;
@@ -262,7 +281,6 @@ body #proyectos .banner01Container .banner01 .imgBannerContainer {
 }
 body #proyectos .banner01Container .banner01 .imgBannerContainer .imgBanner {
   transition: transform 1s, filter 0.5s;
-  background-size: cover;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -274,14 +292,103 @@ body #proyectos .banner01Container .banner01 .imgBannerContainer .imgTitulo {
   transform: translate(-50%, -50%);
   font-weight: 600;
   font-size: 25px;
-  transition: 0.6s ease;
+  transition: opacity 0.6s ease;
   pointer-events: none;
   text-transform: uppercase;
   color: #e8dcc3;
   opacity: 0;
   text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2509803922);
 }
-body #proyectos .banner01Container .direccionObra {
+body #proyectos .banner01Container .banner01 .imgBannerContainer:hover .imgBanner {
+  transform: scale(1.05);
+  filter: brightness(0.75);
+}
+body #proyectos .banner01Container .banner01 .imgBannerContainer:hover .imgTitulo {
+  opacity: 1;
+}
+body #proyectos .banner01Container .direccionObraContainer {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  transition: all 0.7s;
+}
+body #proyectos .banner01Container .direccionObraContainer .direccionObra {
+  font-size: 40px;
+  color: #e8dcc3;
+  transition: 0.5s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+body #proyectos .banner01Container .direccionObraContainer .xBtn .fa-x {
+  z-index: 10;
+  padding: 2px;
+  color: gray;
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  right: -5px;
+  opacity: 0;
+  transition: 0.4s;
+  cursor: pointer;
+}
+body #proyectos .banner01Container .top {
+  top: -25px;
+}
+body #proyectos .banner02Container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+body #proyectos .banner02Container:hover .seguridadEHigiene {
+  text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2509803922);
+  color: #d3cbbc;
+}
+body #proyectos .banner02Container .banner02 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  transition: transform 1s ease, filter 0.3s;
+  transform: translateX(-101%);
+  filter: blur(4px);
+}
+body #proyectos .banner02Container .banner02 .imgBannerContainer {
+  position: relative;
+  overflow: hidden;
+  border: solid #d3cbbc 0.5px;
+}
+body #proyectos .banner02Container .banner02 .imgBannerContainer .imgBanner {
+  transition: transform 1s, filter 0.5s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body #proyectos .banner02Container .banner02 .imgBannerContainer .imgTitulo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  font-size: 25px;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  text-transform: uppercase;
+  color: #e8dcc3;
+  opacity: 0;
+  text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2509803922);
+}
+body #proyectos .banner02Container .banner02 .imgBannerContainer:hover .imgBanner {
+  transform: scale(1.05);
+  filter: brightness(0.75);
+}
+body #proyectos .banner02Container .banner02 .imgBannerContainer:hover .imgTitulo {
+  opacity: 1;
+}
+body #proyectos .banner02Container .seguridadEHigiene {
   position: absolute;
   top: 50%;
   left: 80%;
@@ -292,24 +399,8 @@ body #proyectos .banner01Container .direccionObra {
   white-space: nowrap;
   cursor: pointer;
 }
-body #proyectos .banner01Container .top {
+body #proyectos .banner02Container .top {
   top: -25px;
-}
-body #proyectos .banner02 {
-  width: 80%;
-  height: 25vh;
-  border: solid 2px white;
-  transform: translateX(-101%);
-  transition: 1s ease-in-out;
-  cursor: pointer;
-}
-body #proyectos .banner03 {
-  width: 80%;
-  height: 25vh;
-  border: solid 2px white;
-  transform: translateX(-101%);
-  transition: 1s ease-in-out;
-  cursor: pointer;
 }
 
 body #certificaciones {
