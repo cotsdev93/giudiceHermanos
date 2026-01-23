@@ -205,38 +205,122 @@ body nav .nav2 ul li:hover {
 }
 
 body #nosotros {
+  background-image: url("./../assets/img/fondoNosotros.png");
   width: 100%;
   height: 100vh;
-  background-color: black;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body #nosotros::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 35, 30, 0.45);
+  z-index: 1;
+}
+body #nosotros::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 60px);
+}
+body #nosotros > * {
+  position: relative;
+  z-index: 3;
+}
+body #nosotros .nosotrosContainer {
+  height: 100%;
+  display: flex;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer {
+  position: relative;
+  width: 80%;
+  background-image: url("./../assets/img/fondoHermanos.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 18px;
+  box-shadow: inset 0px 0px 5px 4px rgba(0, 0, 0, 0.4392156863);
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 22px;
+  pointer-events: none;
+  z-index: 3;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer .fondoFoto {
+  border: solid 10px red;
+  mask-image: radial-gradient(ellipse at center, rgb(0, 0, 0) 68%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgb(0, 0, 0) 68%, rgba(0, 0, 0, 0) 100%);
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer .fotoHermanosContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer .fotoHermanosContainer .fotoHermanos {
+  width: 100%;
+  transition: transform 0.6s ease, filter 1s;
+  will-change: transform;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer:hover .fotoHermanos {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 10px 20px rgba(0, 0, 0, 0.85));
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 {
+  width: 60%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 40px 0px;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
-body #nosotros .banner01 {
-  width: 80%;
-  height: 25vh;
-  border: solid 2px white;
-  transform: translateX(-101%);
-  transition: 1s ease-in-out;
-  cursor: pointer;
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer h3 {
+  color: #e8dcc3;
+  opacity: 0.7;
+  transition: 0.5s;
 }
-body #nosotros .banner02 {
-  width: 80%;
-  height: 25vh;
-  border: solid 2px white;
-  transform: translateX(-101%);
-  transition: 1s ease-in-out;
-  cursor: pointer;
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaUno {
+  color: #d3cbbc;
+  opacity: 0.5;
+  transition: 0.8s;
 }
-body #nosotros .banner03 {
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaDos {
+  color: #d3cbbc;
+  opacity: 0.3;
+  text-align: justify;
+  transition: 1s;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .iconosContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .iconosContainer #map {
   width: 80%;
-  height: 25vh;
-  border: solid 2px white;
-  transform: translateX(-101%);
-  transition: 1s ease-in-out;
-  cursor: pointer;
+  height: 70%;
+  border-radius: 10px;
 }
 
 body #proyectos {
@@ -247,7 +331,7 @@ body #proyectos {
   justify-content: space-between;
   padding: 70px 0px;
   transition: box-shadow 0.2s, transform 0.5s ease-out;
-  gap: 45px;
+  gap: 75px;
 }
 body #proyectos:hover {
   box-shadow: inset 0 0 15px rgba(99, 99, 99, 0.45);
@@ -775,6 +859,125 @@ body #contacto .contacto02Container .contacto02 .btnEnviarContainer .btnEnviarFo
 }
 body #contacto .contacto02Container .contacto02 .btnEnviarContainer .btnEnviarForm:hover {
   background-color: rgb(33, 111, 205);
+}
+
+body #nosotros {
+  background-image: url("./../assets/img/fondoNosotros.png");
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body #nosotros::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 35, 30, 0.45);
+  z-index: 1;
+}
+body #nosotros::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 60px);
+}
+body #nosotros > * {
+  position: relative;
+  z-index: 3;
+}
+body #nosotros .nosotrosContainer {
+  height: 100%;
+  display: flex;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer {
+  position: relative;
+  width: 80%;
+  background-image: url("./../assets/img/fondoHermanos.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 18px;
+  box-shadow: inset 0px 0px 5px 4px rgba(0, 0, 0, 0.4392156863);
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 22px;
+  pointer-events: none;
+  z-index: 3;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer .fondoFoto {
+  border: solid 10px red;
+  mask-image: radial-gradient(ellipse at center, rgb(0, 0, 0) 68%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgb(0, 0, 0) 68%, rgba(0, 0, 0, 0) 100%);
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer .fotoHermanosContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer .fotoHermanosContainer .fotoHermanos {
+  width: 100%;
+  transition: transform 0.6s ease, filter 1s;
+  will-change: transform;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer01 .fotoContainer:hover .fotoHermanos {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 10px 20px rgba(0, 0, 0, 0.85));
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer h3 {
+  color: #e8dcc3;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaUno {
+  color: #d3cbbc;
+  opacity: 0.5;
+  transition: 0.8s;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaDos {
+  color: #d3cbbc;
+  opacity: 0.3;
+  text-align: justify;
+  transition: 1s;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .iconosContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .iconosContainer #map {
+  width: 80%;
+  height: 70%;
+  border-radius: 10px;
 }
 
 footer {

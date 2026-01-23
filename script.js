@@ -121,82 +121,31 @@ sloganTarget.forEach((target) => {
 //   });
 // });
 
-/////////////////////////////////////////// contact
+/////////////////////////////////////////////// NOSOTROS
 
-const botonForm = document.querySelector(".botonForm");
-const contacto02 = document.querySelector(".contacto02");
-const contactoTitulo2 = document.querySelector(".contactoTitulo2");
-const contacto02Container = document.querySelector(".contacto02Container");
-const btnEnviarForm = document.querySelector(".btnEnviarForm");
-const customSelects = document.querySelectorAll(".selectApple");
-const upload = document.querySelector("#imagenes");
-const estado = document.querySelector(".estadoArchivo");
+const nosotros = document.querySelector("#nosotros")
+const historiaTitulo = document.querySelector(".historiaTitulo")
+const historiaUno = document.querySelector(".historiaUno")
+const historiaDos = document.querySelector(".historiaDos")
 
-botonForm.addEventListener("click", () => {
-  contacto02.style.transform = "translateX(0%)";
-  contactoTitulo2.style.color = "rgb(230, 194, 73)";
+nosotros.addEventListener("mouseenter", ()=>{
+  console.log("va")
   setTimeout(() => {
-    contacto02Container.classList.add("after");
-  }, 500);
+    
+    historiaTitulo.style.opacity = ("1")
+  }, 300);
   setTimeout(() => {
-    contacto02.style.boxShadow = "0px 0px 6px 1px #00000070";
-  }, 1001);
-});
-
-btnEnviarForm.addEventListener("click", () => {
-  btnEnviarForm.style.backgroundColor = "green";
-  contacto02.style.boxShadow = "none";
-  contactoTitulo2.style.color = "rgb(70, 205, 49)";
+    
+    historiaUno.style.opacity = ("1")
+  }, 800);
   setTimeout(() => {
-    contacto02.style.transform = "translateX(+150%)";
-  }, 500);
-  setTimeout(() => {
-    contacto02Container.classList.remove("after");
-  }, 200);
-});
+    
+    historiaDos.style.opacity = ("1")
+  }, 1600);
+})
 
-customSelects.forEach((select) => {
-  const trigger = select.querySelector(".selectApple__trigger");
-  const list = select.querySelector(".selectApple__list");
-  const labelSpan = select.querySelector(".selectApple__label");
-  const hiddenInput = select.querySelector('input[type="hidden"]');
 
-  trigger.addEventListener("click", () => {
-    select.classList.toggle("open");
-  });
-
-  list.querySelectorAll("li").forEach((option) => {
-    option.addEventListener("click", () => {
-      const value = option.dataset.value;
-      const text = option.textContent;
-
-      hiddenInput.value = value;
-      labelSpan.textContent = text;
-      select.classList.remove("open");
-    });
-  });
-});
-
-document.addEventListener("click", (e) => {
-  customSelects.forEach((select) => {
-    if (!select.contains(e.target)) {
-      select.classList.remove("open");
-    }
-  });
-});
-
-const input = document.querySelector("#imagenes");
-const estadoArchivo = document.querySelector(".estadoArchivo");
-
-input.addEventListener("change", () => {
-  if (input.files.length > 0) {
-    estadoArchivo.textContent = `${input.files.length} archivo(s) cargado(s)`;
-  } else {
-    estadoArchivo.textContent = "Ningún archivo seleccionado";
-  }
-});
-
-////////////////////////////////// proyectos
+////////////////////////////////////////////// PROYECTOS
 const proyectos = document.getElementById("proyectos");
 const banner01 = document.querySelector(".banner01");
 const banner02 = document.querySelector(".banner02");
@@ -364,27 +313,27 @@ proyectos.addEventListener("mouseenter", () => {
   }, 200);
 });
 
-proyectos.addEventListener("mouseleave", () => {
-  if (hideTimer) {
-    clearTimeout(hideTimer);
-  }
+// proyectos.addEventListener("mouseleave", () => {
+//   if (hideTimer) {
+//     clearTimeout(hideTimer);
+//   }
 
-  hideTimer = setTimeout(() => {
-    banner01.style.transform = "translateX(-101%)";
+//   hideTimer = setTimeout(() => {
+//     banner01.style.transform = "translateX(-101%)";
 
-    setTimeout(() => {
-      banner01.style.filter = "blur(4px)";
-    }, 500);
+//     setTimeout(() => {
+//       banner01.style.filter = "blur(4px)";
+//     }, 500);
 
-    direccionObra.style.pointerEvents = "auto";
+//     direccionObra.style.pointerEvents = "auto";
 
-    setTimeout(() => {
-      direccionObra.classList.remove("top");
-    }, 300);
+//     setTimeout(() => {
+//       direccionObra.classList.remove("top");
+//     }, 300);
 
-    hideTimer = null;
-  }, 3000);
-});
+//     hideTimer = null;
+//   }, 3000);
+// });
 
 direccionObraContainer.addEventListener("click", () => {
   if (hideTimer) {
@@ -413,31 +362,104 @@ direccionObraContainer.addEventListener("click", () => {
     });
   }, 200);
 });
-x.forEach((el) => {
-  el.addEventListener("click", () => {
-    console.log("va")
+
+
+seguridadEHigiene.addEventListener("click", () => {
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
+
+  setTimeout(() => {
+    banner02.style.transform = "translateX(0%)";
+  }, 300);
+
+  setTimeout(() => {
+    banner02.style.filter = "blur(0px)";
+
+    if (pendingHover) {
+      activarHover(pendingHover);
+      pendingHover = null;
+    }
+  }, 1350);
+
+  seguridadEHigiene.classList.add("top");
+  seguridadEHigiene.style.pointerEvents = "none";
+});
+
+
+/////////////////////////////////////////// contact
+
+const botonForm = document.querySelector(".botonForm");
+const contacto02 = document.querySelector(".contacto02");
+const contactoTitulo2 = document.querySelector(".contactoTitulo2");
+const contacto02Container = document.querySelector(".contacto02Container");
+const btnEnviarForm = document.querySelector(".btnEnviarForm");
+const customSelects = document.querySelectorAll(".selectApple");
+const upload = document.querySelector("#imagenes");
+const estado = document.querySelector(".estadoArchivo");
+
+botonForm.addEventListener("click", () => {
+  contacto02.style.transform = "translateX(0%)";
+  contactoTitulo2.style.color = "rgb(230, 194, 73)";
+  setTimeout(() => {
+    contacto02Container.classList.add("after");
+  }, 500);
+  setTimeout(() => {
+    contacto02.style.boxShadow = "0px 0px 6px 1px #00000070";
+  }, 1001);
+});
+
+btnEnviarForm.addEventListener("click", () => {
+  btnEnviarForm.style.backgroundColor = "green";
+  contacto02.style.boxShadow = "none";
+  contactoTitulo2.style.color = "rgb(70, 205, 49)";
+  setTimeout(() => {
+    contacto02.style.transform = "translateX(+150%)";
+  }, 500);
+  setTimeout(() => {
+    contacto02Container.classList.remove("after");
+  }, 200);
+});
+
+customSelects.forEach((select) => {
+  const trigger = select.querySelector(".selectApple__trigger");
+  const list = select.querySelector(".selectApple__list");
+  const labelSpan = select.querySelector(".selectApple__label");
+  const hiddenInput = select.querySelector('input[type="hidden"]');
+
+  trigger.addEventListener("click", () => {
+    select.classList.toggle("open");
+  });
+
+  list.querySelectorAll("li").forEach((option) => {
+    option.addEventListener("click", () => {
+      const value = option.dataset.value;
+      const text = option.textContent;
+
+      hiddenInput.value = value;
+      labelSpan.textContent = text;
+      select.classList.remove("open");
+    });
   });
 });
 
-// seguridadEHigiene.addEventListener("click", () => {
-//   if (hideTimer) {
-//     clearTimeout(hideTimer);
-//     hideTimer = null;
-//   }
+document.addEventListener("click", (e) => {
+  customSelects.forEach((select) => {
+    if (!select.contains(e.target)) {
+      select.classList.remove("open");
+    }
+  });
+});
 
-//   setTimeout(() => {
-//     banner02.style.transform = "translateX(0%)";
-//   }, 300);
+const input = document.querySelector("#imagenes");
+const estadoArchivo = document.querySelector(".estadoArchivo");
 
-//   setTimeout(() => {
-//     banner02.style.filter = "blur(0px)";
+input.addEventListener("change", () => {
+  if (input.files.length > 0) {
+    estadoArchivo.textContent = `${input.files.length} archivo(s) cargado(s)`;
+  } else {
+    estadoArchivo.textContent = "Ningún archivo seleccionado";
+  }
+});
 
-//     if (pendingHover) {
-//       activarHover(pendingHover);
-//       pendingHover = null;
-//     }
-//   }, 1350);
-
-//   seguridadEHigiene.classList.add("top");
-//   seguridadEHigiene.style.pointerEvents = "none";
-// });
