@@ -12,7 +12,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: "Roboto", sans-serif;
+  font-family: "novecento";
 }
 * ::-webkit-scrollbar {
   display: none;
@@ -294,21 +294,32 @@ body #nosotros .nosotrosContainer .nosotrosContainer02 {
   align-items: center;
   padding: 40px;
 }
-body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer h3 {
-  color: #e8dcc3;
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaTitulo {
   opacity: 0.7;
   transition: 0.5s;
+  font-family: "novecento";
+  font-size: 20px;
+  color: #e8dcc3;
+  font-weight: 500;
+  text-shadow: -1px 1px 1px rgb(0, 0, 0);
 }
 body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaUno {
   color: #d3cbbc;
   opacity: 0.5;
   transition: 0.8s;
+  line-height: 1;
 }
 body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaDos {
   color: #d3cbbc;
   opacity: 0.3;
   text-align: justify;
   transition: 1s;
+  line-height: 1;
 }
 body #nosotros .nosotrosContainer .nosotrosContainer02 .iconosContainer {
   display: flex;
@@ -390,30 +401,15 @@ body #proyectos .banner01Container .banner01 .imgBannerContainer:hover .imgBanne
 body #proyectos .banner01Container .banner01 .imgBannerContainer:hover .imgTitulo {
   opacity: 1;
 }
-body #proyectos .banner01Container .direccionObraContainer {
+body #proyectos .banner01Container .direccionObra {
   position: absolute;
   top: 50%;
   left: 80%;
   transform: translate(-50%, -50%);
-  transition: all 0.7s;
-}
-body #proyectos .banner01Container .direccionObraContainer .direccionObra {
   font-size: 40px;
   color: #e8dcc3;
   transition: 0.5s;
   white-space: nowrap;
-  cursor: pointer;
-}
-body #proyectos .banner01Container .direccionObraContainer .xBtn .fa-x {
-  z-index: 10;
-  padding: 2px;
-  color: gray;
-  font-size: 10px;
-  position: absolute;
-  top: 0;
-  right: -5px;
-  opacity: 0;
-  transition: 0.4s;
   cursor: pointer;
 }
 body #proyectos .banner01Container .top {
@@ -951,21 +947,32 @@ body #nosotros .nosotrosContainer .nosotrosContainer02 {
   align-items: center;
   padding: 40px;
 }
-body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer h3 {
-  color: #e8dcc3;
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaTitulo {
   opacity: 0.7;
   transition: 0.5s;
+  font-family: "novecento";
+  font-size: 20px;
+  color: #e8dcc3;
+  font-weight: 500;
+  text-shadow: -1px 1px 1px rgb(0, 0, 0);
 }
 body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaUno {
   color: #d3cbbc;
   opacity: 0.5;
   transition: 0.8s;
+  line-height: 1;
 }
 body #nosotros .nosotrosContainer .nosotrosContainer02 .historiaContainer .historiaDos {
   color: #d3cbbc;
   opacity: 0.3;
   text-align: justify;
   transition: 1s;
+  line-height: 1;
 }
 body #nosotros .nosotrosContainer .nosotrosContainer02 .iconosContainer {
   display: flex;

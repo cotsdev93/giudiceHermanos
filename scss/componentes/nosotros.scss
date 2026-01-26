@@ -136,23 +136,32 @@ body {
         padding: 40px;
         // border: solid 5px red;
         .historiaContainer {
-          // border: solid 5px blue;
-
-          h3 {
-            color: $logo;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .historiaTitulo {
             opacity: 0.7;
             transition: 0.5s;
+            font-family: "novecento";
+            font-size: 20px;
+
+            color: $logo;
+            font-weight: 500;
+            text-shadow: -1px 1px 1px rgb(0, 0, 0);
           }
           .historiaUno {
             color: $logo2;
             opacity: 0.5;
             transition: 0.8s;
+            line-height: 1;
           }
+
           .historiaDos {
             color: $logo2;
             opacity: 0.3;
             text-align: justify;
             transition: 1s;
+            line-height: 1;
           }
         }
         .iconosContainer {

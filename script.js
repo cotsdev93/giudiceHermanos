@@ -41,8 +41,8 @@ function navAnimation() {
   }, 3700);
 
   setTimeout(() => {
-    nav.classList.add("nav-bg"); // dispara el overlay con gradient
-  }, 4500);
+    nav.classList.add("nav-bg");
+  }, 5000);
 
   setTimeout(() => {
     li1.classList.add("nav-in");
@@ -123,63 +123,33 @@ sloganTarget.forEach((target) => {
 
 /////////////////////////////////////////////// NOSOTROS
 
-const nosotros = document.querySelector("#nosotros")
-const historiaTitulo = document.querySelector(".historiaTitulo")
-const historiaUno = document.querySelector(".historiaUno")
-const historiaDos = document.querySelector(".historiaDos")
+const nosotros = document.querySelector("#nosotros");
+const historiaTitulo = document.querySelector(".historiaTitulo");
+const historiaUno = document.querySelector(".historiaUno");
+const historiaDos = document.querySelector(".historiaDos");
 
-nosotros.addEventListener("mouseenter", ()=>{
-  console.log("va")
+nosotros.addEventListener("mouseenter", () => {
+  console.log("va");
   setTimeout(() => {
-    
-    historiaTitulo.style.opacity = ("1")
+    historiaTitulo.style.opacity = "1";
   }, 300);
   setTimeout(() => {
-    
-    historiaUno.style.opacity = ("1")
+    historiaUno.style.opacity = "1";
   }, 800);
   setTimeout(() => {
-    
-    historiaDos.style.opacity = ("1")
+    historiaDos.style.opacity = "1";
   }, 1600);
-})
-
+});
 
 ////////////////////////////////////////////// PROYECTOS
 const proyectos = document.getElementById("proyectos");
 const banner01 = document.querySelector(".banner01");
 const banner02 = document.querySelector(".banner02");
-const direccionObraContainer = document.querySelector(
-  ".direccionObraContainer"
-);
+const direccionObra = document.querySelector(".direccionObra");
 const seguridadEHigiene = document.querySelector(".seguridadEHigiene");
-const x = document.querySelectorAll(".fa-x ");
 
-let pendingHover = null;
-
-function bannerEstaBlureado() {
-  return getComputedStyle(banner01).filter.includes("blur(4px)");
-}
-
-function activarHover(container) {
-  const imgBanner = container.querySelector(".imgBanner");
-  const imgTitulo = container.querySelector(".imgTitulo");
-  imgBanner.style.transform = "scale(1.05)";
-  imgBanner.style.filter = "brightness(0.75)";
-  imgTitulo.style.opacity = "1";
-  imgBanner.style.cursor = "pointer";
-}
-
-function desactivarHover(container) {
-  const imgBanner = container.querySelector(".imgBanner");
-  const imgTitulo = container.querySelector(".imgTitulo");
-  imgTitulo.style.opacity = "0";
-  imgBanner.style.cursor = "none";
-  setTimeout(() => {
-    imgBanner.style.transform = "scale(1)";
-    imgBanner.style.filter = "brightness(1)";
-  }, 100);
-}
+let bannersYaSeMovieron = false;
+let bannerHover = false;
 
 class Banner01 {
   constructor() {
@@ -213,24 +183,6 @@ class Banner01 {
     });
 
     const imgBannerContainer = document.querySelectorAll(".imgBannerContainer");
-
-    imgBannerContainer.forEach((container) => {
-      container.addEventListener("mouseenter", () => {
-        if (bannerEstaBlureado()) {
-          pendingHover = container;
-          return;
-        }
-
-        activarHover(container);
-      });
-
-      container.addEventListener("mouseleave", () => {
-        if (pendingHover === container) {
-          pendingHover = null;
-        }
-        desactivarHover(container);
-      });
-    });
   }
 }
 
@@ -271,7 +223,7 @@ class Banner02 {
 
     imgBannerContainer.forEach((container) => {
       container.addEventListener("mouseenter", () => {
-        if (bannerEstaBlureado()) {
+        if (!hoverHabilitado) {
           pendingHover = container;
           return;
         }
@@ -291,19 +243,9 @@ class Banner02 {
 
 new Banner02();
 
-let hideTimer = null;
-
 proyectos.addEventListener("mouseenter", () => {
-  if (hideTimer) {
-    clearTimeout(hideTimer);
-    hideTimer = null;
-  }
-
-  if (direccionObraContainer.classList.contains("top")) {
-    return;
-  }
-
-  direccionObraContainer.style.pointerEvents = "auto";
+  if (bannersYaSeMovieron) return;
+  bannersYaSeMovieron = true;
 
   setTimeout(() => {
     banner01.style.transform = "translateX(-40%)";
@@ -313,80 +255,31 @@ proyectos.addEventListener("mouseenter", () => {
   }, 200);
 });
 
-// proyectos.addEventListener("mouseleave", () => {
-//   if (hideTimer) {
-//     clearTimeout(hideTimer);
-//   }
-
-//   hideTimer = setTimeout(() => {
-//     banner01.style.transform = "translateX(-101%)";
-
-//     setTimeout(() => {
-//       banner01.style.filter = "blur(4px)";
-//     }, 500);
-
-//     direccionObra.style.pointerEvents = "auto";
-
-//     setTimeout(() => {
-//       direccionObra.classList.remove("top");
-//     }, 300);
-
-//     hideTimer = null;
-//   }, 3000);
-// });
-
-direccionObraContainer.addEventListener("click", () => {
-  if (hideTimer) {
-    clearTimeout(hideTimer);
-    hideTimer = null;
-  }
-
+direccionObra.addEventListener("click", () => {
   setTimeout(() => {
     banner01.style.transform = "translateX(0%)";
   }, 300);
 
   setTimeout(() => {
     banner01.style.filter = "blur(0px)";
-
-    if (pendingHover) {
-      activarHover(pendingHover);
-      pendingHover = null;
-    }
   }, 1350);
 
-  direccionObraContainer.classList.add("top");
-  direccionObraContainer.style.pointerEvents = "none";
-  setTimeout(() => {
-    x.forEach((el) => {
-      el.style.opacity = "1";
-    });
-  }, 200);
+  direccionObra.style.pointerEvents = "none";
+
+  direccionObra.classList.add("top");
 });
 
-
 seguridadEHigiene.addEventListener("click", () => {
-  if (hideTimer) {
-    clearTimeout(hideTimer);
-    hideTimer = null;
-  }
-
   setTimeout(() => {
     banner02.style.transform = "translateX(0%)";
   }, 300);
 
   setTimeout(() => {
     banner02.style.filter = "blur(0px)";
-
-    if (pendingHover) {
-      activarHover(pendingHover);
-      pendingHover = null;
-    }
   }, 1350);
 
   seguridadEHigiene.classList.add("top");
-  seguridadEHigiene.style.pointerEvents = "none";
 });
-
 
 /////////////////////////////////////////// contact
 
@@ -462,4 +355,3 @@ input.addEventListener("change", () => {
     estadoArchivo.textContent = "Ningún archivo seleccionado";
   }
 });
-
